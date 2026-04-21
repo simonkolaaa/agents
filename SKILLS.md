@@ -1,63 +1,63 @@
-# SKILLS.md — Skill Reference
+# SKILLS.md — Riferimento delle Skill
 
-> Skill-Wissen ist **inline in jeder Agent-TOOLS.md** eingebettet.
-> Dieses File ist die Kurzreferenz für alle Skills + Download-Infos.
-> Skill-Quellen mit URLs: siehe `SHARED_CONFIG.md`
+> La conoscenza delle skill è incorporata **inline in ogni file TOOLS.md dei singoli agenti**.
+> Questo file è un riferimento rapido per tutte le skill e le informazioni di download.
+> Fonti delle skill con URL: vedi `SHARED_CONFIG.md`.
 
 ---
 
-## Skill Discovery
+## Scoperta delle Skill (Skill Discovery)
 
 ```bash
-skills search "<thema>"
-skills install <skill-name>
-# Oder: curl -sL https://raw.githubusercontent.com/obra/superpowers/main/skills/<name>/SKILL.md
+skills search "<argomento>"
+skills install <nome-skill>
+# Oppure: curl -sL https://raw.githubusercontent.com/obra/superpowers/main/skills/<nome>/SKILL.md
 ```
 
 ---
 
-## Top 23 Skills — Kurzreferenz
+## Le 23 Skill Principali — Riferimento Rapido
 
-### Superpowers (obra) — Kern-Methodik
+### Superpowers (obra) — Metodologia Core
 
-| Skill | Kern-Regel | Agents |
+| Skill | Regola Cardine | Agenti |
 |-------|-----------|--------|
-| `systematic-debugging` | 4 Phasen: Root Cause → Pattern → Hypothesis → Fix. **Kein Fix ohne Root Cause.** | Alle |
-| `test-driven-development` | RED → Verify RED → GREEN → Verify GREEN → REFACTOR. Ein Behavior pro Test. | Unit Test Writer, Builder |
-| `verification-before-completion` | 5-Step Gate: Identify → Run → Read → Verify → Claim. **Kein "done" ohne Beweis.** | Alle |
-| `writing-plans` | Zero-Context, Bite-Sized Tasks (2-5min), File Structure zuerst, Checkbox Syntax. | Gatekeeper, Orchestrator |
-| `executing-plans` | Load → Execute (in_progress → completed) → Finish. STOP bei Blockern. | Builder |
-| `brainstorming` | Socratic Refinement: 1 Frage/Msg → 2-3 Ansätze → Design → Spec → Review. | Gatekeeper, UX |
-| `subagent-driven-development` | Pro Task: Implementer → Spec-Review → Code-Quality-Review (3 Runden). | Orchestrator |
-| `dispatching-parallel-agents` | Identify Independent → Create Tasks → Dispatch Parallel → Review & Integrate. | Orchestrator, QA |
-| `finishing-a-development-branch` | Verify Tests → Base Branch → Merge Options → Execute → Cleanup Worktree. | Builder |
-| `requesting-code-review` | Nach jeder Task: SHAs → Reviewer dispatchen → Critical sofort fixen. | Builder, QA |
-| `receiving-code-review` | READ → UNDERSTAND → VERIFY → EVALUATE → RESPOND → IMPLEMENT. Kein "Great point!" | Builder |
-| `using-git-worktrees` | Feature-Isolation: `git worktree add ../wt-<name> -b feat/<name>` | Git WF Mgr, Builder |
-| `using-superpowers` | Priority: User Instructions > Skills > System Prompt. | Alle |
+| `systematic-debugging` | 4 Fasi: Root Cause (Causa Radice) → Pattern → Ipotesi → Fix. **Nessun fix senza causa radice.** | Tutti |
+| `test-driven-development` | RED (Fallimento) → Verifica RED → GREEN (Successo) → Verifica GREEN → REFACTOR. Un solo comportamento per test. | Unit Test Writer, Builder |
+| `verification-before-completion` | Gate a 5 step: Identifica → Esegui → Leggi → Verifica → Conferma. **Nessun "fatto" senza prove.** | Tutti |
+| `writing-plans` | Contesto zero, Task piccoli (2-5 min), Struttura file prima, Sintassi checkbox. | Gatekeeper, Orchestrator |
+| `executing-plans` | Carica → Esegui (in_progress → completed) → Finisci. STOP in caso di blocchi. | Builder |
+| `brainstorming` | Raffinamento Socratico: 1 domanda/messaggio → 2-3 approcci → Design → Spec → Review. | Gatekeeper, UX |
+| `subagent-driven-development` | Per ogni task: Implementatore → Spec-Review → Code-Quality-Review (3 round). | Orchestrator |
+| `dispatching-parallel-agents` | Identifica Task Indipendenti → Crea Task → Invia in Parallelo → Revisiona e Integra. | Orchestrator, QA |
+| `finishing-a-development-branch` | Verifica Test → Base Branch → Opzioni di Merge → Esegui → Pulizia Worktree. | Builder |
+| `requesting-code-review` | Dopo ogni task: SHA → Invia ai Reviewer → Correggi subito le criticità. | Builder, QA |
+| `receiving-code-review` | LEGGI → CAPISCI → VERIFICA → VALUTA → RISPONDI → IMPLEMENTA. Mai rispondere "Ottimo punto!". | Builder |
+| `using-git-worktrees` | Isolamento delle feature: `git worktree add ../wt-<nome> -b feat/<name>` | Git WF Mgr, Builder |
+| `using-superpowers` | Priorità: Istruzioni Utente > Skill > System Prompt. | Tutti |
 
 ### Vercel Labs / skills.sh — Frontend & Design
 
-| Skill | Kern-Regel | Agents |
+| Skill | Regola Cardine | Agenti |
 |-------|-----------|--------|
-| `vercel-react-best-practices` | `Promise.all()`, keine Barrel Files, `next/dynamic`, Server Components default. | Frontend Builder |
-| `web-design-guidelines` | Fetch Guidelines von Vercel → Prüfe gegen alle Rules → Output `file:line`. | Design Auditor |
-| `frontend-design` | Typography: nie System Fonts. Color: Dominant + Akzente. Motion: Staggered. | Design Architect |
+| `vercel-react-best-practices` | `Promise.all()`, niente Barrel File, `next/dynamic`, Server Components come default. | Frontend Builder |
+| `web-design-guidelines` | Scarica linee guida da Vercel → Verifica rispetto a tutte le regole → Output `file:linea`. | Design Auditor |
+| `frontend-design` | Tipografia: mai usare font di sistema. Colore: Dominante + Accenti. Motion: Sfalsato (Staggered). | Design Architect |
 | `agent-browser` | `open` → `snapshot -i` → `screenshot` → `set viewport` → `close`. | E2E, Design Auditor |
 | `next-best-practices` | App Router, Server Components, `loading.tsx` + `error.tsx`, Metadata API. | Frontend Builder |
-| `ui-ux-pro-max` | Kontrast ≥4.5:1, Touch ≥44px, Focus Ring, Heading Hierarchy, `prefers-reduced-motion`. | Design Architect |
-| `webapp-testing` | Server Tests → `curl`. Visual Tests → `agent-browser`. Recon-Then-Action. | E2E, QA |
+| `ui-ux-pro-max` | Contrasto ≥4.5:1, Touch ≥44px, Focus Ring, Gerarchia degli Heading, `prefers-reduced-motion`. | Design Architect |
+| `webapp-testing` | Test Server → `curl`. Test Visuali → `agent-browser`. Ricognizione prima dell'azione. | E2E, QA |
 
-### Spezialisiert
+### Specializzate
 
-| Skill | Kern-Regel | Agents |
+| Skill | Regola Cardine | Agenti |
 |-------|-----------|--------|
-| `supabase-postgres` | RLS immer an, Indexes auf FKs, Enums, Prepared Statements, PgBouncer. | Backend Builder |
+| `supabase-postgres` | RLS sempre attivo, Index sulle FK, Enum, Prepared Statement, PgBouncer. | Backend Builder |
 | `typescript-advanced-types` | Discriminated Unions, Generics, `satisfies`, Type Guards, Utility Types. | Frontend Builder |
 
 ---
 
-## Superpowers Workflow → Agent Mapping
+## Flusso di Lavoro Superpowers → Mappatura Agenti
 
 ```
 1. brainstorming        → Gatekeeper + UX Researcher
@@ -69,16 +69,16 @@ skills install <skill-name>
 7. finishing-branch     → Builder → Gatekeeper
 ```
 
-Immer aktiv: `systematic-debugging` (bei Bugs) · `verification-before-completion` (vor Abgabe)
+Sempre attivo: `systematic-debugging` (per i bug) · `verification-before-completion` (prima della consegna)
 
 ---
 
-## Context Loading Order
+## Ordine di Caricamento del Contesto
 
 ```
-1. GOAL.md          → Was ist das Ziel?
-2. SYSTEM_STATE.md  → Was existiert?
-3. MEMORY.md        → Was haben wir gelernt?
-4. SHARED_CONFIG.md → Stack, Rules
-5. Own TOOLS.md     → Agent-spezifische Skills
+1. GOAL.md          → Qual è l'obiettivo?
+2. SYSTEM_STATE.md  → Cosa esiste già?
+3. MEMORY.md        → Cosa abbiamo imparato?
+4. SHARED_CONFIG.md → Stack, Regole
+5. Propri TOOLS.md   → Skill specifiche per l'agente
 ```

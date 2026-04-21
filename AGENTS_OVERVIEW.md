@@ -1,10 +1,10 @@
-# AGENTS_OVERVIEW.md — Alle 30 Agents
+# AGENTS_OVERVIEW.md — Panoramica dei 30 Agenti
 
-> 30 Agents · 17 Skill-Quellen · Methodik: [obra/superpowers](https://github.com/obra/superpowers) + [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
+> 30 Agenti · 17 Fonti di Skill · Metodologia: [obra/superpowers](https://github.com/obra/superpowers) + [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
 
 ---
 
-## Hierarchie
+## Gerarchia
 
 ```
 CEO
@@ -34,14 +34,14 @@ CEO
             ├── Validation Expert
             └── Accessibility Expert 🆕
 
-Cross-Cutting: Systematic Debugger 🆕, Browser Automation
+Trasversali: Systematic Debugger 🆕, Browser Automation
 ```
 
 ---
 
-## Agent-Liste
+## Elenco Agenti
 
-| # | Ordner | Squad | Berichtet an |
+| # | Cartella | Squad | Riferisce a |
 |---|--------|-------|-------------|
 | 1 | `ceo/` | Leadership | Board |
 | 2 | `product-owner/` | Leadership | CEO |
@@ -67,7 +67,7 @@ Cross-Cutting: Systematic Debugger 🆕, Browser Automation
 | 22 | `testability-expert/` | QA | QA Mgr |
 | 23 | `code-quality-expert/` | Quality | Gatekeeper |
 | 24 | `validation-expert/` | QA | QA Mgr |
-| 25 | `systematic-debugger/` 🆕 | Cross | Any Agent |
+| 25 | `systematic-debugger/` 🆕 | Cross | Ogni Agente |
 | 26 | `spec-reviewer/` 🆕 | Quality | Gatekeeper |
 | 27 | `git-workflow-manager/` 🆕 | Infra | Gatekeeper |
 | 28 | `security-auditor/` 🆕 | Security | Gatekeeper |
@@ -76,7 +76,7 @@ Cross-Cutting: Systematic Debugger 🆕, Browser Automation
 
 ---
 
-## Feature Lifecycle
+## Ciclo di Vita delle Funzionalità (Feature Lifecycle)
 
 ```
  1. BACKLOG       ← Product Owner
@@ -104,36 +104,36 @@ Cross-Cutting: Systematic Debugger 🆕, Browser Automation
 
 ---
 
-## Agent Config (4 Dateien pro Agent)
+## Configurazione Agente (4 file per agente)
 
-| Datei | Inhalt |
+| File | Contenuto |
 |-------|--------|
-| `SOUL.md` | Persona, Anti-Patterns |
-| `AGENTS.md` | Rolle, Scope, Workflow |
-| `TOOLS.md` | Skills (inline), Commands |
-| `HEARTBEAT.md` | Checkliste, Red Flags |
+| `SOUL.md` | Persona, Anti-Pattern |
+| `AGENTS.md` | Ruolo, Ambito, Workflow |
+| `TOOLS.md` | Skill (inline), Comandi |
+| `HEARTBEAT.md` | Checklist, Segnali di allerta (Red Flags) |
 
 ---
 
-## Kern-Prinzipien
+## Principi Cardine
 
-1. **Goal Check** — GOAL.md lesen als erstes
-2. **Evidence first** — Beweise vor Behauptungen
-3. **Circuit Breaker** — Max 3 Iterationen, dann eskalieren
-4. **TDD** — Kein Code ohne failing test
-5. **HARD-GATE** — Kein Code ohne Design-Approval
-6. **Mandated Stack** — Next.js 15 · React 19 · shadcn · Tailwind 4 · Zustand · Zod
+1.  **Goal Check** — Leggere `GOAL.md` come prima cosa.
+2.  **Evidence first** — Evidenze/Prove prima delle affermazioni.
+3.  **Circuit Breaker** — Massimo 3 iterazioni, poi escalation.
+4.  **TDD** — Nessun codice senza un test che fallisce.
+5.  **HARD-GATE** — Nessun codice senza approvazione del design.
+6.  **Stack Obbligatorio** — Next.js 15 · React 19 · shadcn · Tailwind 4 · Zustand · Zod
 
 ---
 
-## Personalized Operating Mode
+## Modalità Operativa Personalizzata
 
-All agents must follow these global behavior adjustments:
+Tutti gli agenti devono seguire questi adattamenti comportamentali globali:
 
-1. **Design Together First**: no implementation before user-aligned architecture discussion.
-2. **Tutor + Pair Mode**: implement while explaining short, practical reasoning.
-3. **Adaptive Guidance**: match user coding style and learning stage.
-4. **Scope Discipline**: separate mandatory delivery from optional enhancements.
-5. **High-Rigor Done Gate**: checks/tests/security basics + decision log + handoff summary.
+1.  **Design Together First**: nessuna implementazione prima di una discussione sull'architettura allineata con l'utente.
+2.  **Modalità Tutor + Pair**: implementare spiegando ragionamenti brevi e pratici.
+3.  **Guida Adattiva**: adattarsi allo stile di programmazione e al livello di apprendimento dell'utente.
+4.  **Disciplina dello Scope**: separare la consegna obbligatoria dai miglioramenti opzionali.
+5.  **Quality Gate Rigoroso**: controlli/test/basi di sicurezza + registro delle decisioni + riepilogo del passaggio di consegne (handoff).
 
-Core agents required to enforce this mode: `ceo`, `product-owner`, `architecture-gatekeeper`, `feature-orchestrator`, `backend-builder`, `frontend-builder`, `qa-orchestrator`.
+Agenti principali necessari per far rispettare questa modalità: `ceo`, `product-owner`, `architecture-gatekeeper`, `feature-orchestrator`, `backend-builder`, `frontend-builder`, `qa-orchestrator`.

@@ -1,18 +1,22 @@
 # 🤖 Paperclip AI Agent System
 
-> **30 KI-Agents** für vollständige Software-Entwicklung — Idee bis Deploy.
+> **30 Agenti IA** per lo sviluppo software completo — dall'idea al deploy.
 
 ---
 
-## Quick Start
+## Avvio Rapido
 
-Jeder Agent hat 4 Dateien: `SOUL.md` (Persona) · `AGENTS.md` (Rolle) · `TOOLS.md` (Skills) · `HEARTBEAT.md` (Checkliste)
+Ogni agente ha 4 file fondamentali: 
+- `SOUL.md` (Persona/Carattere) 
+- `AGENTS.md` (Ruolo/Flusso di lavoro) 
+- `TOOLS.md` (Competenze/Skill) 
+- `HEARTBEAT.md` (Checklist di controllo)
 
-Globale Regeln: `SHARED_CONFIG.md` · Agent-Übersicht: `AGENTS_OVERVIEW.md`
+Regole globali: `SHARED_CONFIG.md` · Panoramica agenti: `AGENTS_OVERVIEW.md`
 
 ---
 
-## Architektur
+## Architettura
 
 ```
 CEO → Product Owner → Scrum Master
@@ -25,29 +29,29 @@ CEO → Product Owner → Scrum Master
 
 ---
 
-## 30 Agents nach Bereich
+## I 30 Agenti per Area
 
-### Leadership
+### Leadership (Direzione)
 CEO · Product Owner · Scrum Master · Architecture Gatekeeper
 
-### Design & Research
+### Design & Ricerca
 UX Researcher · Design Architect · Stack Researcher
 
-### Build
+### Build (Sviluppo)
 Feature Orchestrator · Frontend Builder · Backend Builder
 
-### Quality & Testing
+### Qualità & Testing
 QA Orchestrator · Unit Test Writer · Design Auditor · E2E Tester · VM Tester · Testability Expert · Validation Expert · Code Quality Expert
 
-### Infrastructure
+### Infrastruttura
 DevOps Expert · Kubernetes Expert · Browser Automation · Docs Manager
 
-### Specialists 🆕
+### Specialisti 🆕
 Systematic Debugger · Spec Reviewer · Git Workflow Manager · Security Auditor · Performance Optimizer · Accessibility Expert
 
 ---
 
-## Feature Lifecycle (21 Schritte)
+## Ciclo di Vita delle Funzionalità (21 Passaggi)
 
 ```
 BACKLOG → GOAL → SPEC REVIEW → PRD → API_SPEC → RESEARCH
@@ -58,43 +62,43 @@ BACKLOG → GOAL → SPEC REVIEW → PRD → API_SPEC → RESEARCH
 
 ---
 
-## Methodik
+## Metodologia
 
-| Quelle | Technik |
+| Fonte | Tecnica |
 |--------|---------|
-| [obra/superpowers](https://github.com/obra/superpowers) | TDD, 4-Phase Debugging, Verification Evidence |
-| [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | OKLCH, 4pt Grid, AI Slop Test |
-| [skills.sh](https://skills.sh) | 60+ Skills aus 17 Repositories |
+| [obra/superpowers](https://github.com/obra/superpowers) | TDD, Debugging a 4 fasi, Evidenza di Verifica |
+| [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | OKLCH, Griglia a 4pt, AI Slop Test |
+| [skills.sh](https://skills.sh) | Oltre 60 Skill da 17 repository |
 
 ---
 
-## Tech Stack
+## Tech Stack (Tecnologie)
 
 Next.js 15 · React 19 · shadcn/ui · Tailwind 4 · Zustand · Zod · Drizzle · Supabase · Vitest · Playwright
 
 ---
 
-## Kern-Prinzipien
+## Principi Cardine
 
-1. **Goal Check** — GOAL.md lesen als erstes
-2. **Evidence first** — Beweise vor Behauptungen
-3. **TDD** — Kein Code ohne failing test
-4. **HARD-GATE** — Kein Code ohne Design-Approval
-5. **Circuit Breaker** — Max 3 Iterationen, dann eskalieren
-6. **Error Recovery** — Selbst → Peer → Gatekeeper
+1.  **Controllo Obiettivo** — Leggere sempre `GOAL.md` come prima cosa.
+2.  **Evidenza prima di tutto** — Fornire prove concrete prima di fare affermazioni.
+3.  **TDD (Test Driven Development)** — Nessun codice senza un test che fallisce preventivamente.
+4.  **HARD-GATE** — Nessun codice viene scritto senza l'approvazione del Design/Architettura.
+5.  **Circuit Breaker** — Massimo 3 iterazioni, poi escalation del problema.
+6.  **Recupero Errori** — Risoluzione: Sè stessi → Collega → Gatekeeper.
 
 ---
 
-📚 Detaillierte Agent-Liste: [AGENTS_OVERVIEW.md](AGENTS_OVERVIEW.md) · Regeln: [SHARED_CONFIG.md](SHARED_CONFIG.md) · Skills: [SKILLS.md](SKILLS.md)
+📚 Lista dettagliata Agenti: [AGENTS_OVERVIEW.md](AGENTS_OVERVIEW.md) · Regole: [SHARED_CONFIG.md](SHARED_CONFIG.md) · Skill: [SKILLS.md](SKILLS.md)
 
 ---
 
 ## Personal Mode (Simon)
 
-This agent system is configured for a student workflow with professional standards:
+Questo sistema di agenti è configurato per il flusso di lavoro di uno studente con standard professionali:
 
-- Python + Flask are the default implementation baseline.
-- React/TypeScript, Rust, and Go are active learning tracks.
-- Agents work in tutor + pair-programmer mode.
-- For architecture decisions, agents must discuss options first, then implement after approval.
-- Quality gate remains high: tests, checks, security basics, and decision logging are required.
+- **Python + Flask** sono la base predefinita per l'implementazione.
+- **React/TypeScript, Rust e Go** sono i percorsi di apprendimento attivo.
+- Gli agenti lavorano in modalità **Tutor + Pair-programmer**.
+- Per le decisioni architettoniche, gli agenti devono discutere le opzioni prima di implementare, previa approvazione.
+- Il livello qualitativo rimane alto: sono richiesti test, controlli di sicurezza e registrazione delle decisioni.

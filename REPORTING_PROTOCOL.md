@@ -1,121 +1,123 @@
-# REPORTING_PROTOCOL.md — Status Reporting
+# REPORTING_PROTOCOL.md — Reporting dello Stato
 
-> Jeder Agent updatet STATUS.md wenn er Arbeit beginnt oder beendet.
-> Bei Crash: Nächster Agent liest STATUS.md → setzt ab letztem ✅ fort.
+> Ogni agente aggiorna `STATUS.md` quando inizia o finisce un lavoro.
+> In caso di crash: l'agente successivo legge `STATUS.md` → riprende dall'ultimo ✅.
 
 ---
 
-## Feature-Ordner
+## Cartella della Feature
 
 ```
-docs/features/<name>/
-├── STATUS.md              ← Wer arbeitet, was läuft
-├── GOAL.md                ← Acceptance Criteria
-├── PRD.md                 ← Product Requirements
-├── UX_SPEC.md             ← User Flows
-├── DESIGN_SPEC.md         ← Design Tokens
-├── QA_REPORT.md           ← Test-Ergebnisse
-├── FEATURE_SCORECARD.md   ← Finale Bewertung
-└── [optional]
+docs/features/<nome>/
+├── STATUS.md              ← Chi lavora, cosa è in corso
+├── GOAL.md                ← Criteri di Accettazione (AC)
+├── PRD.md                 ← Requisiti di Prodotto
+├── UX_SPEC.md             ← Flussi Utente (User Flows)
+├── DESIGN_SPEC.md         ← Design Token
+├── QA_REPORT.md           ← Risultati dei Test
+├── FEATURE_SCORECARD.md   ← Valutazione finale
+└── [opzionale]
     ├── SPEC_REVIEW.md         ← Spec Review
-    ├── BRANCH_STATUS.md       ← Git Branch Status
-    ├── ROOT_CAUSE.md          ← Bug Analysis
-    ├── SECURITY_AUDIT.md      ← Security Findings
-    ├── PERFORMANCE_REPORT.md  ← Performance Metrics
-    └── A11Y_AUDIT.md          ← Accessibility Findings
+    ├── BRANCH_STATUS.md       ← Stato dei Branch Git
+    ├── ROOT_CAUSE.md          ← Analisi del Bug
+    ├── SECURITY_AUDIT.md      ← Risultati di Sicurezza
+    ├── PERFORMANCE_REPORT.md  ← Metriche di Performance
+    └── A11Y_AUDIT.md          ← Risultati Accessibilità
 ```
 
 ---
 
-## STATUS.md Template
+## Template di STATUS.md
 
 ```markdown
-# STATUS: [Feature Name]
-> Zuletzt aktualisiert: [timestamp] von [Agent]
+# STATUS: [Nome Feature]
+> Ultimo aggiornamento: [timestamp] da [Agente]
 
-## Aktuell
-| Phase | Agent | Status |
+## Attuale
+| Fase | Agente | Stato |
 |-------|-------|--------|
-| [Build/QA/...] | [Agent] | 🟢 Läuft / 🔴 Blockiert / ✅ Fertig |
+| [Build/QA/...] | [Agente] | 🟢 In corso / 🔴 Bloccato / ✅ Completato |
 
-## Fortschritt
+## Progressi
 - [x] GOAL.md
 - [ ] PRD
 - [ ] UX_SPEC
 - [ ] DESIGN_SPEC
-- [ ] Code + Tests
-- [ ] QA bestanden
-- [ ] Docs aktualisiert
-- [ ] Gatekeeper Approval
+- [ ] Codice + Test
+- [ ] QA superato
+- [ ] Docs aggiornati
+- [ ] Approvazione Gatekeeper
 
-## Letzte Übergabe
-Von: [Agent] → An: [Agent]
-Kontext: [was der Empfänger wissen muss]
+## Ultimo Handoff (Passaggio Consegne)
+Da: [Agente] → A: [Agente]
+Contesto: [cosa deve sapere il ricevente]
 ```
 
 ---
 
-## Wann updaten?
+## Quando aggiornare?
 
-| Event | Wer |
+| Evento | Chi |
 |-------|-----|
-| Feature startet | Orchestrator erstellt STATUS.md |
-| Arbeit beginnen | Agent updatet "Aktuell" |
-| Deliverable fertig | Agent hakt Checkbox ab |
-| Übergabe | Absender schreibt HANDOFF |
-| Blockiert | Agent setzt 🔴 + Blocker-Text |
-| Feature shipped | Orchestrator → TASK_LOG.md ✅ |
+| Inizio Feature | L'Orchestrator crea `STATUS.md` |
+| Inizio lavoro | L'agente aggiorna "Attuale" |
+| Deliverable pronto | L'agente spunta la casella (checkbox) |
+| Handoff | Il mittente scrive l'HANDOFF |
+| Bloccato | L'agente imposta 🔴 + motivo del blocco |
+| Feature rilasciata | L'Orchestrator segna ✅ in `TASK_LOG.md` |
 
 ---
 
-## Crash-Recovery
+## Recupero dopo Crash (Crash-Recovery)
 
 ```
-STATUS.md lesen → Letzter ✅ finden → Ab dort weitermachen
+Leggi STATUS.md → Trova l'ultimo ✅ → Riprendi da lì
 ```
 
 ---
 
-## High-Rigor Done Protocol (Mandatory)
+## Protocollo "Fatto" ad Alto Rigore (Obbligatorio)
 
-A task can be marked done only if evidence is available for all relevant checks:
+Un compito può essere segnato come completato solo se è disponibile l'evidenza per tutti i controlli rilevanti:
 
-- lint/static checks pass;
-- tests pass for touched scope;
-- basic security checks are confirmed;
-- decision rationale is documented;
-- handoff/next-step summary is written.
+- controlli lint/statici superati;
+- test superati per lo scope interessato;
+- controlli di sicurezza base confermati;
+- logica delle decisioni documentata;
+- scritto il riepilogo handoff/prossimo passo.
 
-If one required check is missing, task state must remain `in_progress` or `blocked`.
+Se manca un solo controllo richiesto, lo stato del task deve rimanere `in_progress` o `blocked`.
 
 ---
 
-## DECISION_LOG.md Template
+## Template di DECISION_LOG.md
 
 ```markdown
 # DECISION_LOG
 
-## [YYYY-MM-DD] [Feature/Task Name]
-- Context: [what problem/constraint triggered the decision]
-- Options considered:
-  - A) [option]
-  - B) [option]
-  - C) [option]
-- Selected option: [A/B/C + short description]
-- Why: [short rationale and trade-offs]
-- Impact:
-  - Code: [files/areas]
-  - Tests: [expected or required changes]
-  - Risks: [known downside]
+## [AAAA-MM-GG] [Nome Feature/Task]
+- Contesto: [quale problema/vincolo ha generato la decisione]
+- Opzioni considerate:
+  - A) [opzione]
+  - B) [opzione]
+  - C) [opzione]
+- Opzione scelta: [A/B/C + breve descrizione]
+- Perché: [breve razionale e compromessi - trade-offs]
+- Impatto:
+  - Codice: [file/aree coinvolte]
+  - Test: [modifiche attese o richieste]
+  - Rischi: [svantaggi noti]
 ```
 
-## QA_REPORT Add-on (Learning Notes)
+---
 
-Append this section in each QA report:
+## Add-on QA_REPORT (Note di Apprendimento)
+
+Aggiungi questa sezione in ogni report QA:
 
 ```markdown
-## Learning Notes
-- Mistake pattern: [what went wrong]
-- Fast fix path: [minimal fix]
-- Prevention tip: [how to avoid recurrence]
+## Note di Apprendimento
+- Pattern d'errore: [cosa è andato storto]
+- Percorso di correzione rapida: [fix minimale]
+- Suggerimento preventivo: [come evitare che si ripeta]
 ```

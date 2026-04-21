@@ -1,77 +1,77 @@
-# SHARED_CONFIG.md — Zentrale Konfiguration für alle Agents
+# SHARED_CONFIG.md — Configurazione Centrale per tutti gli Agenti
 
-> Dieses File wird von JEDEM Agent gelesen. Änderungen hier betreffen alle.
-> Letzte Aktualisierung: 2026-03-13 (Skill Registry, Advanced Reasoning, Error Recovery, 30 Agents)
+> Questo file viene letto da OGNI agente. Le modifiche qui influenzano tutti.
+> Ultimo aggiornamento: 2026-03-13 (Skill Registry, Ragionamento Avanzato, Recupero Errori, 30 Agenti)
 
 ---
 
 ## Runtime
-- **OpenCode** ist die Agent-Runtime.
-- Alle Agents haben Shell-Zugriff, Internet-Zugriff, und MCP-Server Zugriff.
+- **OpenCode** è il runtime degli agenti.
+- Tutti gli agenti hanno accesso alla Shell, a Internet e ai server MCP.
 
-## Paperclip API
+## API Paperclip
 
-| Endpoint | Method | Zweck |
+| Endpoint | Metodo | Scopo |
 |----------|--------|-------|
-| `/api/agents/me` | GET | Agent-Identität |
-| `/api/companies/{companyId}/issues?assigneeAgentId={agentId}&status=todo,in_progress,blocked` | GET | Aufgaben-Inbox |
-| `/api/issues/{issueId}` | PATCH | Status-Updates (inkl. `X-Paperclip-Run-Id` Header) |
-| `/api/companies/{companyId}/issues` | POST | Subtasks erstellen (mit `parentId` + `goalId`) |
+| `/api/agents/me` | GET | Identità dell'Agente |
+| `/api/companies/{companyId}/issues?assigneeAgentId={agentId}&status=todo,in_progress,blocked` | GET | Posta in arrivo dei compiti |
+| `/api/issues/{issueId}` | PATCH | Aggiornamenti di stato (incl. header `X-Paperclip-Run-Id`) |
+| `/api/companies/{companyId}/issues` | POST | Creazione subtask (con `parentId` + `goalId`) |
 
 ---
 
-## Mandated Stack
+## Stack Obbligatorio (Mandated Stack)
 
-| Layer | Technologie | Referenz |
+| Livello | Tecnologia | Riferimento |
 |-------|-------------|----------|
 | Framework | Next.js 15 (App Router) | `/vercel/next.js` |
-| UI Library | React 19 | `/facebook/react` |
-| UI Components | shadcn/ui | `/shadcn-ui/ui` |
-| Styling | Tailwind CSS 4 | `/tailwindlabs/tailwindcss` |
-| State (Client) | Zustand (mit persist + devtools) | `/pmndrs/zustand` |
-| State (Server) | TanStack React Query | `/TanStack/query` |
-| Validation | Zod | `/colinhacks/zod` |
-| Forms | React Hook Form + Zod Resolver | `/react-hook-form/react-hook-form` |
-| Icons | lucide-react | — |
-| Animation | Framer Motion | — |
-| HTTP Client | ky | — |
+| Libreria UI | React 19 | `/facebook/react` |
+| Componenti UI | shadcn/ui | `/shadcn-ui/ui` |
+| Stile (CSS) | Tailwind CSS 4 | `/tailwindlabs/tailwindcss` |
+| Stato (Client) | Zustand (con persist + devtools) | `/pmndrs/zustand` |
+| Stato (Server) | TanStack React Query | `/TanStack/query` |
+| Validazione | Zod | `/colinhacks/zod` |
+| Form | React Hook Form + Zod Resolver | `/react-hook-form/react-hook-form` |
+| Icone | lucide-react | — |
+| Animazioni | Framer Motion | — |
+| Client HTTP | ky | — |
 | Toast | Sonner | — |
 
-> Die Referenz-Spalte sind Context7 Library IDs — für aktuelle Docs.
-> Dieser Stack ist **NICHT verhandelbar**. Optimize WITHIN it.
+> La colonna Riferimento contiene gli ID Context7 per la documentazione aggiornata.
+> Questo stack **NON è negoziabile**. Ottimizza ALL'INTERNO di esso.
 
-### Backend Stack
+### Stack Backend
 
-| Layer | Technologie | Referenz |
+| Livello | Tecnologia | Riferimento |
 |-------|-------------|----------|
 | ORM | Drizzle ORM | `/drizzle-team/drizzle-orm` |
-| Migrations | drizzle-kit | — |
+| Migrazioni | drizzle-kit | — |
 | Database | Supabase (PostgreSQL) | `/supabase/supabase` |
-| Auth | Supabase Auth / better-auth | `/supabase/supabase` |
+| Autenticazione | Supabase Auth / better-auth | `/supabase/supabase` |
 | SSR Auth | @supabase/ssr | — |
 | Logging | pino | — |
 | IDs | nanoid | — |
 
-> Backend Stack gilt für alle API/DB Arbeiten. Wird vom Backend Builder durchgesetzt.
+> Lo stack backend si applica a tutti i lavori su API/DB. Viene imposto dal Backend Builder.
 
-### Test Coverage Targets (Quality Gate)
+### Obiettivi di Copertura Test (Quality Gate)
 
-| Metrik | Minimum | Empfohlen |
+| Metrica | Minimo | Raccomandato |
 |--------|---------|----------|
-| Statements | 80% | 90% |
-| Branches | 75% | 85% |
-| Functions | 80% | 90% |
-| Lines | 80% | 90% |
+| Statement | 80% | 90% |
+| Branch | 75% | 85% |
+| Funzioni | 80% | 90% |
+| Linee | 80% | 90% |
 
-> Coverage wird mit `npx vitest run --coverage` gemessen.
-> Features dürfen NICHT shippen wenn Coverage unter Minimum fällt.
-> QA Orchestrator prüft Coverage als Teil des QA_REPORT.md.
+> La copertura viene misurata con `npx vitest run --coverage`.
+> Le funzionalità NON possono essere rilasciate se la copertura scende sotto il minimo.
+> Il QA Orchestrator verifica la copertura come parte del file `QA_REPORT.md`.
 
 ---
 
-## MCP Server
+## Server MCP
 
-### Context7 — Aktuelle Library-Dokumentation
+### Context7 — Documentazione Librerie Aggiornata
 ```json
 {
   "context7": {
@@ -80,8 +80,8 @@
   }
 }
 ```
-**Tools:** `resolve-library-id`, `get-library-docs`
-**Wann:** Vor jeder Implementierung aktuelle Docs fetchen → speichern in `docs/lib/`
+**Strumenti:** `resolve-library-id`, `get-library-docs`
+**Quando:** Scaricare i docs aggiornati prima di ogni implementazione → salvarli in `docs/lib/`
 
 ### Firecrawl — Web Scraping & Crawling
 ```json
@@ -97,306 +97,306 @@
 
 ---
 
-## Shared Rules (für ALLE Agents)
+## Regole Condivise (per TUTTI gli Agenti)
 
-### 0. 🔍 Context Discovery (ALLERERSTER Schritt — vor JEDER Arbeit)
+### 0. 🔍 Scoperta del Contesto (Context Discovery - PRIMO passo obbligatorio)
 
-> **Bevor du irgendetwas tust: Lies was schon da ist.**
-> **Wenn eine Datei fehlt: Erstelle sie aus dem Template.**
+> **Prima di fare qualsiasi cosa: Leggi cosa è già presente.**
+> **Se manca un file: Crealo partendo dal template.**
 
 ```
-STEP 0 — CONTEXT DISCOVERY (PFLICHT für jeden Agent bei jedem Start)
+PASSO 0 — CONTEXT DISCOVERY (OBBLIGATORIO per ogni agente ad ogni avvio)
 
-1. Prüfe: Existiert `../../SYSTEM_STATE.md`?
-   ├── JA → LESEN. Du weißt jetzt was im System existiert.
-   └── NEIN → Erstelle aus Template (siehe SHARED_CONFIG Projekt-Ordnerstruktur)
+1. Verifica: Esiste `../../SYSTEM_STATE.md`?
+   ├── SÌ → LEGGERE. Ora sai cosa esiste nel sistema.
+   └── NO → Crealo dal template (vedi struttura cartelle progetto SHARED_CONFIG).
 
-2. Prüfe: Existiert `../../MEMORY.md`?
-   ├── JA → LESEN. Du kennst jetzt bekannte Gotchas und Patterns.
-   └── NEIN → Erstelle aus Template.
+2. Verifica: Esiste `../../MEMORY.md`?
+   ├── SÌ → LEGGERE. Ora conosci i problemi noti (gotchas) e i pattern.
+   └── NO → Crealo dal template.
 
-3. Prüfe: Existiert `../../TASK_LOG.md`?
-   ├── JA → LESEN. Du weißt was aktiv, blockiert oder fertig ist.
-   └── NEIN → Erstelle aus Template.
+3. Verifica: Esiste `../../TASK_LOG.md`?
+   ├── SÌ → LEGGERE. Sai cosa è attivo, bloccato o completato.
+   └── NO → Crealo dal template.
 
-4. Prüfe: Existiert `docs/features/<aktuelles-feature>/STATUS.md`?
-   ├── JA → LESEN. Du weißt wo das Feature steht und wer zuletzt was gemacht hat.
-   └── NEIN → Feature ist neu, Orchestrator erstellt den Ordner.
+4. Verifica: Esiste `docs/features/<feature-attuale>/STATUS.md`?
+   ├── SÌ → LEGGERE. Sai a che punto è la feature e chi ha fatto cosa per ultimo.
+   └── NO → La feature è nuova, l'Orchestrator crea la cartella.
 
-5. Prüfe: Existiert `docs/lib/`?
-   ├── JA → Prüfe ob Docs für deine Libraries vorhanden sind. LESEN.
-   └── NEIN → Ordner erstellen, Stack Researcher um Context7 Docs bitten.
+5. Verifica: Esiste `docs/lib/`?
+   ├── SÌ → Verifica se ci sono i docs per le tue librerie. LEGGERE.
+   └── NO → Crea la cartella, chiedi allo Stack Researcher i docs Context7.
 
-6. Lese `../SHARED_CONFIG.md` — Stack, Rules, MCP Server.
-7. Lese `../SKILLS.md` — verfügbare Skills und extrahiertes Wissen.
-8. Lese `../REPORTING_PROTOCOL.md` — wie du Status reportest.
+6. Leggi `../SHARED_CONFIG.md` — Stack, Regole, Server MCP.
+7. Leggi `../SKILLS.md` — skill disponibili e conoscenza estratta.
+8. Leggi `../REPORTING_PROTOCOL.md` — come riportare lo stato.
 ```
 
-**Warum das wichtig ist:**
-- Agent startet → findet vorherigen State → macht WEITER statt von vorne
-- Agent crashed → nächster Agent liest STATUS.md → übernimmt
-- Kein Agent arbeitet jemals "blind" ohne Kontext
+**Perché è importante:**
+- L'agente inizia → recupera lo stato precedente → CONTINUA invece di ricominciare da zero.
+- Se un agente crasha → l'agente successivo legge `STATUS.md` → subentra.
+- Nessun agente lavora mai "al buio" senza contesto.
 
-### 1. Goal Check (MANDATORY Step 0)
-Jeder Agent liest als ERSTES die GOAL.md des Features. Alle Aktionen müssen dem Goal dienen.
+### 1. Controllo Obiettivo (Goal Check - Passo 0 mandatorio)
+Ogni agente legge come PRIMA cosa il `GOAL.md` della feature. Tutte le azioni devono servire all'obiettivo.
 
-### 2. Evidence before Claims
-Kein Agent darf "fertig" sagen ohne Beweis:
-- Builder: Tests müssen PASS zeigen
-- Tester: Screenshots + Logs
-- Auditor: REVIEW.md mit Befund
-- Docs: Alle Links verifiziert
+### 2. Evidenze prima delle Affermazioni
+Nessun agente può dire "fatto" senza prove:
+- Builder: I test devono mostrare PASS.
+- Tester: Screenshot + Log.
+- Auditor: `REVIEW.md` con i risultati.
+- Docs: Tutti i link verificati.
 
 ### 3. Circuit Breaker
-Max 3 Iterationen pro Gate. Danach → Eskalation an Architecture Gatekeeper.
+Massimo 3 iterazioni per ogni fase (Gate). Dopo → Escalation all'Architecture Gatekeeper.
 
-### 4. HANDOFF Protocol
-Standard-Format für Agent-zu-Agent Übergaben:
+### 4. Protocollo di Passaggio Consegne (HANDOFF)
+Formato standard per i passaggi tra agenti:
 ```markdown
-# HANDOFF: [From Agent] → [To Agent]
-Feature: [name]
-Goal: [GOAL.md link]
-Deliverables: [was übergeben wird]
-Context: [was der Empfänger wissen muss]
-Documentation: [docs/lib/ Referenzen]
+# HANDOFF: [Da Agente] → [A Agente]
+Feature: [nome]
+Goal: [link a GOAL.md]
+Deliverables: [cosa viene consegnato]
+Contesto: [cosa deve sapere il ricevente]
+Documentazione: [riferimenti docs/lib/]
 ```
 
-### 5. Skill Loading
+### 5. Caricamento Skill (Skill Loading)
 
 ```bash
-# Suchen + Installieren
-skills search "<thema>"
-skills install <skill-name>
+# Cerca + Installa
+skills search "<argomento>"
+skills install <nome-skill>
 
-# Oder direkt von GitHub
-curl -sL https://raw.githubusercontent.com/obra/superpowers/main/skills/<name>/SKILL.md
+# Oppure direttamente da GitHub
+curl -sL https://raw.githubusercontent.com/obra/superpowers/main/skills/<nome>/SKILL.md
 ```
 
-### Skill-Quellen
+### Fonti di Skill
 
-| Quelle | GitHub | Top Skills |
+| Fonte | GitHub | Top Skills |
 |--------|--------|-----------|
-| obra/superpowers | [GitHub](https://github.com/obra/superpowers) | TDD, Debugging, Plans, Verification, Git, Subagent, Code Review |
-| Vercel Labs | [skills.sh](https://skills.sh) | React Best Practices, Design Guidelines, Browser, Next.js |
-| Anthropic | [GitHub](https://github.com/anthropics/skills) | Frontend Design, Canvas, Webapp Testing |
-| pbakaus/impeccable | [GitHub](https://github.com/pbakaus/impeccable) | OKLCH, 4pt Grid, Motion, AI Slop Test |
-| supercent-io | [GitHub](https://github.com/supercent-io/agent-skills) | Security, Code Review, Design System |
-| coreyhaines31 | [GitHub](https://github.com/coreyhaines31/marketingskills) | SEO, Content Strategy, Competitor Analysis |
-| google-labs-code | [GitHub](https://github.com/google-labs-code/stitch-skills) | React Components, Design |
-| supabase | [GitHub](https://github.com/supabase/agent-skills) | Postgres Best Practices |
+| obra/superpowers | [GitHub](https://github.com/obra/superpowers) | TDD, Debugging, Piani, Verifica, Git, Subagent, Code Review |
+| Vercel Labs | [skills.sh](https://skills.sh) | Best Practice React, Linee guida Design, Browser, Next.js |
+| Anthropic | [GitHub](https://github.com/anthropics/skills) | Design Frontend, Canvas, Testing Webapp |
+| pbakaus/impeccable | [GitHub](https://github.com/pbakaus/impeccable) | OKLCH, Griglia 4pt, Motion, AI Slop Test |
+| supercent-io | [GitHub](https://github.com/supercent-io/agent-skills) | Sicurezza, Code Review, Design System |
+| coreyhaines31 | [GitHub](https://github.com/coreyhaines31/marketingskills) | SEO, Strategia Contenuti, Analisi Competitor |
+| google-labs-code | [GitHub](https://github.com/google-labs-code/stitch-skills) | Componenti React, Design |
+| supabase | [GitHub](https://github.com/supabase/agent-skills) | Best Practice Postgres |
 | nextlevelbuilder | [GitHub](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | UI/UX Pro Max |
-| browser-use | [GitHub](https://github.com/browser-use/browser-use) | Browser Automation |
-| better-auth | [GitHub](https://github.com/better-auth/skills) | Auth Best Practices |
+| browser-use | [GitHub](https://github.com/browser-use/browser-use) | Automazione Browser |
+| better-auth | [GitHub](https://github.com/better-auth/skills) | Best Practice Autenticazione |
 | currents-dev | [GitHub](https://github.com/currents-dev/playwright-best-practices-skill) | Playwright |
 | wshobson | [GitHub](https://github.com/wshobson/agents) | TypeScript, Tailwind |
-| sleekdotdesign | [GitHub](https://github.com/sleekdotdesign/agent-skills) | Mobile App Design |
+| sleekdotdesign | [GitHub](https://github.com/sleekdotdesign/agent-skills) | Design App Mobile |
 | am-will | [GitHub](https://github.com/am-will/codex-skills) | Context7, Find-Skills |
-| Intopia | [Website](https://intopia.digital) | Web Accessibility (WCAG) |
-| Trail of Bits | [Website](https://www.trailofbits.com) | Security Auditing |
+| Intopia | [Website](https://intopia.digital) | Accessibilità Web (WCAG) |
+| Trail of Bits | [Website](https://www.trailofbits.com) | Audit di Sicurezza |
 
-> Skills sind **inline in TOOLS.md** eingebettet. URLs dienen zum Nachlesen oder Aktualisieren.
+> Le skill sono incorporate **inline in TOOLS.md**. Gli URL servono per approfondire o aggiornare.
 
-### Skill Priority
-1. **User Instructions** → HÖCHSTE
-2. **Skills** → Override Defaults
-3. **System Prompt** → NIEDRIGSTE
+### Priorità delle Skill
+1. **Istruzioni Utente** → MASSIMA
+2. **Skill** → Sovrascrivono i default
+3. **System Prompt** → MINIMA
 
-### 6. State Tracking
-- Nach JEDEM Build: `SYSTEM_STATE.md` updaten.
-- Vor JEDEM Feature: `SYSTEM_STATE.md` lesen.
+### 6. Tracciamento dello Stato (State Tracking)
+- Dopo OGNI build: aggiornare `SYSTEM_STATE.md`.
+- Prima di OGNI feature: leggere `SYSTEM_STATE.md`.
 
-### 7. Advanced Reasoning
+### 7. Ragionamento Avanzato (Advanced Reasoning)
 
-Bei komplexen Aufgaben:
-- **Chain-of-Thought**: Denkschritte zeigen (Problem → Optionen → Entscheidung)
-- **ReAct**: Abwechselnd denken + handeln (Reason → Act → Reason → Act)
-- **Self-Refinement**: Vor Abgabe: Vollständig? Korrekt? Minimal?
+Per compiti complessi:
+- **Chain-of-Thought**: mostrare i passaggi del pensiero (Problema → Opzioni → Decisione).
+- **ReAct**: alternare pensiero + azione (Ragiona → Agisci → Ragiona → Agisci).
+- **Self-Refinement**: prima della consegna: È completo? Corretto? Minimale?
 
-### 8. Error Recovery
-
-```
-Stufe 1: Selbst lösen (max 3 Versuche)
-Stufe 2: Systematic Debugger fragen
-Stufe 3: BLOCKED setzen → Gatekeeper
-```
-
-### 9. Progress Reporting
-- STATUS.md updaten bei Start/Ende von Arbeit
-- TASK_LOG.md für Feature-Übersicht
-- Bei Crash: STATUS.md lesen → ab letztem ✅ weitermachen
-
-### 10. 🛡️ Anti-Hallucination Protocol (PFLICHT für JEDEN Agent)
-
-> **Eiserne Regel: Kein Agent liefert ab, ohne sich selbst zu prüfen UND vom Empfänger geprüft zu werden.**
-
-#### A. STOP-CHECK-DELIVER (vor jeder Abgabe)
-
-Jeder Agent MUSS vor dem Abliefern diese 3 Fragen beantworten:
+### 8. Recupero Errori (Error Recovery)
 
 ```
-STOP: Ist mein Output GENAU das was angefordert wurde?
-  1. Habe ich GOAL.md / den Auftrag nochmal gelesen? (Pflicht!)
-  2. Enthält mein Output NUR was gefordert wurde? (Keine Extras!)
-  3. Fehlt etwas das gefordert wurde? (Vollständigkeit!)
-
-Wenn EINE Antwort NEIN → FIX IT before delivering.
+Livello 1: Risoluzione autonoma (max 3 tentativi)
+Livello 2: Chiedere al Systematic Debugger
+Livello 3: Impostare stato BLOCKED → Gatekeeper
 ```
 
-#### B. Hierarchische Validierung (Empfänger prüft IMMER)
+### 9. Report dei Progressi
+- Aggiornare `STATUS.md` all'inizio e alla fine del lavoro.
+- `TASK_LOG.md` per la panoramica delle feature.
+- In caso di crash: leggere `STATUS.md` → riprendere dall'ultimo ✅.
+
+### 10. 🛡️ Protocollo Anti-Allucinazione (OBBLIGATORIO per OGNI agente)
+
+> **Regola Ferrea: Nessun agente consegna senza essersi auto-controllato E senza essere controllato dal ricevente.**
+
+#### A. STOP-CHECK-DELIVER (prima di ogni consegna)
+
+Ogni agente DEVE rispondere a queste 3 domande prima di consegnare:
 
 ```
-Agent liefert ab
+STOP: Il mio output è ESATTAMENTE quanto richiesto?
+  1. Ho riletto GOAL.md / l'incarico? (Obbligatorio!)
+  2. Il mio output contiene SOLO quanto richiesto? (Nessun extra!)
+  3. Manca qualcosa che era stato richiesto? (Completezza!)
+
+Se UNA sola risposta è NO → CORREGGI prima di consegnare.
+```
+
+#### B. Validazione Gerarchica (Il ricevente controlla SEMPRE)
+
+```
+L'agente consegna
     ↓
-Empfänger (höhere Hierarchie) prüft:
-  ├── Entspricht dem Auftrag? → ✅ Akzeptiert
-  ├── Fehlt etwas? → 🔴 REJECT: "AC #X fehlt"
-  ├── Zu viel drin? → 🔴 REJECT: "Entferne [X], nicht gefordert"
-  └── Anders als gefordert? → 🔴 REJECT: "Soll [A] sein, ist [B]"
+Il ricevente (gerarchia superiore) controlla:
+  ├── Corrisponde all'incarico? → ✅ Accettato
+  ├── Manca qualcosa? → 🔴 RIFIUTATO: "Manca AC #X"
+  ├── C'è troppo materiale? → 🔴 RIFIUTATO: "Rimuovi [X], non richiesto"
+  └── Diverso da quanto richiesto? → 🔴 RIFIUTATO: "Doveva essere [A], è [B]"
 ```
 
-#### C. Agent-spezifische Anti-Hallucination Regeln
+#### C. Regole Anti-Allucinazione specifiche per Agente
 
-| Agent | Prüft sich gegen | Wird geprüft von |
+| Agente | Si controlla rispetto a | Viene controllato da |
 |-------|------------------|-----------------|
-| Stack Researcher | GOAL.md — nur recherchieren was gefragt ist | Gatekeeper / Orchestrator |
-| UX Researcher | PRD — nur Flows für geforderte Features | Orchestrator |
-| Design Architect | UX_SPEC + PRD — nur Screens designen die gefordert sind | Orchestrator |
-| Frontend Builder | DESIGN_SPEC + GOAL.md — nur bauen was designed ist | Orchestrator (Scope Gate) |
-| Backend Builder | API_SPEC + GOAL.md — nur API-Endpoints die spezifiziert sind | Gatekeeper |
-| Unit Test Writer | Code + PRD ACs — nur testen was existiert und gefordert | QA Orchestrator |
-| Design Auditor | DESIGN_SPEC — reviewen gegen Spec, nicht persönliche Meinung | QA Orchestrator |
-| E2E Tester | PRD ACs — nur User Journeys testen die im PRD stehen | QA Orchestrator |
-| QA Orchestrator | PRD + DESIGN_SPEC — nur relevante Tests dispatchen | Orchestrator |
-| Docs Manager | SYSTEM_STATE + Code — nur dokumentieren was existiert | Orchestrator |
-| Spec Reviewer | GOAL.md — nur reviewen was im Scope steht | Gatekeeper |
-| Systematic Debugger | Bug-Report — nur den gemeldeten Bug untersuchen | Aufrufender Agent |
-| Security Auditor | OWASP + Code — nur Schwachstellen die existieren, keine Phantome | Gatekeeper |
-| Performance Optimizer | Messdaten — nur optimieren was gemessen langsam ist | Gatekeeper |
-| Accessibility Expert | WCAG 2.1 + Code — nur existierende Barrieren melden | QA Orchestrator |
-| Git Workflow Manager | Branch-Policy — nur definierte Branch-Operationen ausführen | Gatekeeper |
+| Stack Researcher | GOAL.md — cercare solo quanto richiesto | Gatekeeper / Orchestrator |
+| UX Researcher | PRD — solo flussi per feature richieste | Orchestrator |
+| Design Architect | UX_SPEC + PRD — disegnare solo schermate richieste | Orchestrator |
+| Frontend Builder | DESIGN_SPEC + GOAL.md — costruire solo quanto disegnato | Orchestrator (Scope Gate) |
+| Backend Builder | API_SPEC + GOAL.md — solo endpoint specificati | Gatekeeper |
+| Unit Test Writer | Codice + PRD ACs — testare solo quanto esiste e richiesto | QA Orchestrator |
+| Design Auditor | DESIGN_SPEC — recensire rispetto alla spec, non opinioni personali | QA Orchestrator |
+| E2E Tester | PRD ACs — testare solo User Journey nel PRD | QA Orchestrator |
+| QA Orchestrator | PRD + DESIGN_SPEC — lanciare solo test rilevanti | Orchestrator |
+| Docs Manager | SYSTEM_STATE + Codice — documentare solo quanto esiste | Orchestrator |
+| Spec Reviewer | GOAL.md — revisionare solo quanto in scope | Gatekeeper |
+| Systematic Debugger | Bug-Report — indagare solo il bug segnalato | Agente chiamante |
+| Security Auditor | OWASP + Codice — solo vulnerabilità esistenti, no fantasmi | Gatekeeper |
+| Performance Optimizer | Dati misurati — ottimizzare solo quanto misurato come lento | Gatekeeper |
+| Accessibility Expert | WCAG 2.1 + Codice — segnalare solo barriere esistenti | QA Orchestrator |
+| Git Workflow Manager | Branch-Policy — eseguire solo operazioni di branch definite | Gatekeeper |
 
-#### D. Verbotene Patterns (🔴 SOFORT STOPPEN)
+#### D. Pattern Vietati (🔴 FERMARSI IMMEDIATAMENTE)
 
-1. **"Ich füge noch schnell X hinzu"** → NEIN. Wenn X nicht im GOAL.md steht, nicht bauen.
-2. **"Das wäre doch besser wenn..."** → NEIN. Verbesserungsvorschläge als Kommentar, nicht als Code.
-3. **"Ich habe auch noch Y gemacht"** → NEIN. Nur den Auftrag erfüllen.
-4. **"Vielleicht braucht man auch Z"** → NEIN. Scope ist definiert.
-5. **Eigene ACs erfinden** → NEIN. Nur die ACs aus GOAL.md/PRD umsetzen.
-6. **Tests für nicht-existierenden Code schreiben** → NEIN. Nur testen was gebaut wurde.
-7. **Design-Reviews nach persönlichem Geschmack** → NEIN. Nur gegen DESIGN_SPEC prüfen.
+1. **"Aggiungo velocemente X"** → NO. Se X non è in `GOAL.md`, non costruirlo.
+2. **"Sarebbe meglio se..."** → NO. Suggerimenti come commenti, non come codice.
+3. **"Ho fatto anche Y"** → NO. Eseguire solo l'incarico.
+4. **"Forse serve anche Z"** → NO. Lo scope è definito.
+5. **Inventare propri AC** → NO. Implementare solo gli AC di `GOAL.md`/PRD.
+6. **Scrivere test per codice inesistente** → NO. Testare solo quanto costruito.
+7. **Review di design basate sul gusto personale** → NO. Verificare solo rispetto a `DESIGN_SPEC`.
 
 ---
 
-## Projekt-Ordnerstruktur
+## Struttura delle Cartelle del Progetto
 
 ```
 project-root/
-├── SYSTEM_STATE.md         ← Aktueller Systemzustand (Routes, Components, Stores, APIs)
-├── MEMORY.md               ← Gelernte Patterns, Entscheidungen, Gotchas
-├── TASK_LOG.md             ← Zentrale Feature-Übersicht (aktiv/blockiert/fertig)
+├── SYSTEM_STATE.md         ← Stato attuale del sistema (Rotte, Componenti, Store, API)
+├── MEMORY.md               ← Pattern appresi, decisioni, criticità (gotchas)
+├── TASK_LOG.md             ← Panoramica centrale feature (attive/bloccate/completate)
 ├── docs/
-│   ├── lib/                ← Context7 Docs (vom Stack Researcher)
-│   ├── architecture/       ← Architektur-Docs (vom Gatekeeper)
-│   ├── features/           ← Feature-Docs (pro Feature ein Ordner)
+│   ├── lib/                ← Docs Context7 (dallo Stack Researcher)
+│   ├── architecture/       ← Docs d'architettura (dal Gatekeeper)
+│   ├── features/           ← Docs delle feature (una cartella per feature)
 │   │   └── <feature>/
-│   │       ├── STATUS.md           ← LIVE Status, Fortschritt, Änderungsprotokoll
-│   │       ├── GOAL.md             ← Acceptance Criteria
-│   │       ├── SPEC_REVIEW.md      ← Spec Review Ergebnis (Spec Reviewer)
-│   │       ├── PRD.md              ← Product Requirements
-│   │       ├── UX_SPEC.md          ← User Flows
-│   │       ├── DESIGN_SPEC.md      ← Design Tokens + Layout
-│   │       ├── BRANCH_STATUS.md    ← Git Branch Lifecycle (Git Workflow Manager)
-│   │       ├── ROOT_CAUSE.md       ← Bug Root Cause (Systematic Debugger)
-│   │       ├── SECURITY_AUDIT.md   ← Security Findings (Security Auditor)
-│   │       ├── PERFORMANCE_REPORT.md ← Performance Metrics (Performance Optimizer)
-│   │       ├── A11Y_AUDIT.md       ← Accessibility Findings (Accessibility Expert)
-│   │       ├── QA_REPORT.md        ← Test-Ergebnisse (QA Orchestrator)
-│   │       └── FEATURE_SCORECARD.md ← Finale Bewertung
-│   └── api/                ← API-Docs (vom Docs Manager)
-├── agents/                 ← Agent-Konfigurationen (dieses Verzeichnis)
-│   ├── README.md           ← Übersicht + Quick Start
-│   ├── AGENTS_OVERVIEW.md  ← Alle 30 Agents Detailübersicht
-│   ├── SHARED_CONFIG.md    ← DIESES FILE
-│   ├── SKILLS.md           ← Skill Discovery + extrahiertes Wissen
-│   ├── REPORTING_PROTOCOL.md ← Status-Reporting Regeln + Templates
-│   └── [agent-ordner]/     ← 30 Individuelle Agent-Configs (je 4 Dateien)
-└── src/                    ← Source Code
+│   │       ├── STATUS.md           ← Stato LIVE, progressi, log modifiche
+│   │       ├── GOAL.md             ← Criteri di Accettazione (Acceptance Criteria)
+│   │       ├── SPEC_REVIEW.md      ← Risultato della revisione spec (Spec Reviewer)
+│   │       ├── PRD.md              ← Requisiti di Prodotto
+│   │       ├── UX_SPEC.md          ← Flussi Utente (User Flows)
+│   │       ├── DESIGN_SPEC.md      ← Token di Design + Layout
+│   │       ├── BRANCH_STATUS.md    ← Ciclo di vita branch Git (Git Workflow Manager)
+│   │       ├── ROOT_CAUSE.md       ← Causa radice del Bug (Systematic Debugger)
+│   │       ├── SECURITY_AUDIT.md   ← Risultati di Sicurezza (Security Auditor)
+│   │       ├── PERFORMANCE_REPORT.md ← Metriche di Performance (Performance Optimizer)
+│   │       ├── A11Y_AUDIT.md       ← Risultati Accessibilità (Accessibility Expert)
+│   │       ├── QA_REPORT.md        ← Risultati dei Test (QA Orchestrator)
+│   │       └── FEATURE_SCORECARD.md ← Valutazione finale
+│   └── api/                ← Docs API (dal Docs Manager)
+├── agents/                 ← Configurazioni Agenti (questa cartella)
+│   ├── README.md           ← Panoramica + Avvio Rapido
+│   ├── AGENTS_OVERVIEW.md  ← Dettagli dei 30 Agenti
+│   ├── SHARED_CONFIG.md    ← DIESE FILE (QUESTO FILE)
+│   ├── SKILLS.md           ← Record delle skill + conoscenza estratta
+│   ├── REPORTING_PROTOCOL.md ← Regole di report stato + Template
+│   └── [cartella-agente]/  ← 30 Configurazioni individuali (4 file ciascuna)
+└── src/                    ← Codice Sorgente
 ```
 
 ---
 
-## Personal Collaboration Profile (Simon)
+## Profilo di Collaborazione Personale (Simon)
 
-This workspace is personalized for Simon's development style.
+Questo workspace è personalizzato per lo stile di sviluppo di Simon.
 
-- Primary stack: Python + Flask.
-- Secondary learning tracks: React, TypeScript, Rust, Go.
-- Collaboration mode: tutor + pair programmer.
-- Agents must explain key choices step-by-step and adapt to user coding style.
+- Stack principale: Python + Flask.
+- Percorsi di apprendimento secondari: React, TypeScript, Rust, Go.
+- Modalità di collaborazione: tutor + pair programmer.
+- Gli agenti devono spiegare le scelte chiave passo-passo e adattarsi allo stile di codice dell'utente.
 
-### Mandatory Interaction Rules
+### Regole d'Interazione Obbligatorie
 
-1. Before major architecture or stack decisions, discuss options with the user.
-2. Present 2-3 practical alternatives with trade-offs and one recommendation.
-3. Ask for explicit confirmation before implementing non-trivial structural changes.
-4. Keep explanations concise and practical (what, why, and what to do next).
-5. Separate required scope work from optional improvements.
-
----
-
-## Design Together Protocol (Mandatory Before Build)
-
-Every agent must run this protocol before implementation begins.
-
-1. Clarify objective, constraints, timeline, and expected deliverables.
-2. Confirm current skill level assumptions (student-friendly, production-minded).
-3. Propose architecture options:
-   - Option A: Flask monolith (templates + static + API in one app)
-   - Option B: Flask API + React/TypeScript frontend
-   - Option C: phased approach (start monolith, then split)
-4. Provide decision criteria (complexity, speed, maintainability, learning value).
-5. Wait for user confirmation and document the chosen option.
-
-No implementation starts before protocol completion.
+1. Prima di grandi decisioni su architettura o stack, discutere le opzioni con l'utente.
+2. Presentare 2-3 alternative pratiche con vantaggi/svantaggi e una raccomandazione.
+3. Chiedere conferma esplicita prima di implementare cambiamenti strutturali non banali.
+4. Mantenere le spiegazioni concise e pratiche (cosa, perché e cosa fare dopo).
+5. Separare il lavoro richiesto (scope) dai miglioramenti opzionali.
 
 ---
 
-## Personal Project Paths
+## Protocollo "Design Together" (Obbligatorio prima del Build)
 
-### Path 1 — Flask Monolith Starter
-- Best for fast iteration and learning backend fundamentals.
-- Expected folders: `app/`, `templates/`, `static/`, `tests/`, `docs/`.
-- Use when requirements are small/medium or deadline is short.
+Ogni agente deve eseguire questo protocollo prima di iniziare l'implementazione.
 
-### Path 2 — Flask API + React/TS Frontend
-- Best for modern frontend practice and clearer separation of concerns.
-- Expected folders: `backend/` and `frontend/`.
-- Use when UI complexity, team collaboration, or reuse requirements increase.
+1. Chiarire obiettivo, vincoli, tempi e risultati attesi.
+2. Confermare le assunzioni sul livello di competenza attuale (orientato allo studente, con mentalità produttiva).
+3. Proporre opzioni d'architettura:
+   - Opzione A: Monolite Flask (template + static + API in un'unica app)
+   - Opzione B: API Flask + frontend React/TypeScript
+   - Opzione C: approccio a fasi (iniziare monolite, poi dividere)
+4. Fornire criteri di decisione (complessità, velocità, manutenibilità, valore didattico).
+5. Attendere conferma dall'utente e documentare l'opzione scelta.
 
-### Scale-Up Trigger (Monolith -> Split)
-
-Suggest migration from monolith when 2 or more are true:
-- frontend codebase grows quickly and slows backend work;
-- independent deployment cadence is needed;
-- API consumers beyond templates are required;
-- test/runtime isolation becomes difficult.
+Nessuna implementazione inizia prima del completamento del protocollo.
 
 ---
 
-## High-Rigor Quality Gate (Definition of Done)
+## Percorsi di Progetto Personali
 
-A task is complete only when all required evidence exists.
+### Percorso 1 — Flask Monolith Starter
+- Ideale per iterazioni rapide e apprendimento dei fondamentali del backend.
+- Cartelle previste: `app/`, `templates/`, `static/`, `tests/`, `docs/`.
+- Usare quando i requisiti sono piccoli/medi o la scadenza è breve.
 
-1. Lint/checks pass for modified areas.
-2. Tests pass for touched features (and regressions are checked).
-3. Basic security checks applied (input validation, secrets handling, auth checks).
-4. Decision log entry added (why this approach was selected).
-5. Clear handoff summary produced for next session/agent.
+### Percorso 2 — Flask API + Frontend React/TS
+- Ideale per la pratica del frontend moderno e una chiara separazione degli ambiti (concerns).
+- Cartelle previste: `backend/` e `frontend/`.
+- Usare quando aumenta la complessità della UI, la collaborazione nel team o i requisiti di riutilizzo.
 
-### Reporting Artifacts (Required)
+### Trigger per il Passaggio di Scala (Monolith -> Split)
 
-- `STATUS.md`: current phase, blockers, next step.
-- `TASK_LOG.md`: progress and ownership changes.
-- `DECISION_LOG.md` (or feature-local decision section): architecture/implementation decisions.
+Suggerire la migrazione dal monolite quando 2 o più punti sono veri:
+- la base di codice frontend cresce rapidamente e rallenta il lavoro sul backend;
+- è necessaria una cadenza di rilascio (deploy) indipendente;
+- sono necessari consumatori della API oltre ai template;
+- l'isolamento dei test o del runtime diventa difficile.
 
-If evidence is missing, status must be `in_progress` or `blocked`, never `done`.
+---
+
+## Quality Gate ad Alto Rigore (Definizione di Fatto / Done)
+
+Un compito è completo solo quando esistono tutte le evidenze richieste.
+
+1. Lint/controlli superati per le aree modificate.
+2. Test superati per le feature toccate (e controllate le regressioni).
+3. Applicati controlli di sicurezza base (validazione input, gestione segreti, controlli auth).
+4. Aggiunta voce nel registro delle decisioni (perché è stato scelto questo approccio).
+5. Prodotto un riepilogo chiaro del passaggio di consegne per la sessione/agente successivo.
+
+### Prodotti di Reportistica (Obbligatori)
+
+- `STATUS.md`: fase attuale, blocchi, prossimo passo.
+- `TASK_LOG.md`: progressi e cambi di proprietà (ownership).
+- `DECISION_LOG.md` (o sezione locale alla feature): decisioni d'architettura/implementazione.
+
+Se l'evidenza manca, lo stato deve essere `in_progress` o `blocked`, mai `done`.
